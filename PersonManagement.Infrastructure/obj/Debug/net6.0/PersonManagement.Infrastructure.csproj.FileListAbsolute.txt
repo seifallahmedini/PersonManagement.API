@@ -1,0 +1,17 @@
+F:\.net projects\PersonManagement.Api\PersonManagement.Infrastructure\obj\Debug\net6.0\PersonManagement.Infrastructure.csproj.AssemblyReference.cache
+F:\.net projects\PersonManagement.Api\PersonManagement.Infrastructure\obj\Debug\net6.0\PersonManagement.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+F:\.net projects\PersonManagement.Api\PersonManagement.Infrastructure\obj\Debug\net6.0\PersonManagement.Infrastructure.AssemblyInfoInputs.cache
+F:\.net projects\PersonManagement.Api\PersonManagement.Infrastructure\obj\Debug\net6.0\PersonManagement.Infrastructure.AssemblyInfo.cs
+F:\.net projects\PersonManagement.Api\PersonManagement.Infrastructure\obj\Debug\net6.0\PersonManagement.Infrastructure.csproj.CoreCompileInputs.cache
+F:\.net projects\PersonManagement.Api\PersonManagement.Infrastructure\bin\Debug\net6.0\PersonManagement.Infrastructure.deps.json
+F:\.net projects\PersonManagement.Api\PersonManagement.Infrastructure\bin\Debug\net6.0\PersonManagement.Infrastructure.runtimeconfig.json
+F:\.net projects\PersonManagement.Api\PersonManagement.Infrastructure\bin\Debug\net6.0\PersonManagement.Infrastructure.dll
+F:\.net projects\PersonManagement.Api\PersonManagement.Infrastructure\bin\Debug\net6.0\PersonManagement.Infrastructure.pdb
+F:\.net projects\PersonManagement.Api\PersonManagement.Infrastructure\bin\Debug\net6.0\PersonManagement.Domain.dll
+F:\.net projects\PersonManagement.Api\PersonManagement.Infrastructure\bin\Debug\net6.0\PersonManagement.Domain.pdb
+F:\.net projects\PersonManagement.Api\PersonManagement.Infrastructure\obj\Debug\net6.0\PersonManagement.Infrastructure.csproj.CopyComplete
+F:\.net projects\PersonManagement.Api\PersonManagement.Infrastructure\obj\Debug\net6.0\PersonManagement.Infrastructure.dll
+F:\.net projects\PersonManagement.Api\PersonManagement.Infrastructure\obj\Debug\net6.0\refint\PersonManagement.Infrastructure.dll
+F:\.net projects\PersonManagement.Api\PersonManagement.Infrastructure\obj\Debug\net6.0\PersonManagement.Infrastructure.pdb
+F:\.net projects\PersonManagement.Api\PersonManagement.Infrastructure\obj\Debug\net6.0\PersonManagement.Infrastructure.genruntimeconfig.cache
+F:\.net projects\PersonManagement.Api\PersonManagement.Infrastructure\obj\Debug\net6.0\ref\PersonManagement.Infrastructure.dll
