@@ -2,6 +2,9 @@
 using AutoMapper;
 using PersonManagement.Domain.Interfaces;
 using PersonManagement.Domain.Entities;
+using PersonManagement.Application.Exceptions;
+using System;
+using PersonManagement.Application.DTOs;
 
 namespace PersonManagement.Application
 {
@@ -18,49 +21,51 @@ namespace PersonManagement.Application
             _mapper = mapper;
         }
 
-        public async Task<PersonDTO> GetByIdAsync(Guid id)
-        {
-            var person = await _personRepository.GetByIdAsync(id);
-            return _mapper.Map<PersonDTO>(person);
-        }
-
-        public async Task<IEnumerable<PersonDTO>> GetAllAsync()
+        public async Task<IEnumerable<PersonResponseDTO>> GetAllAsync()
         {
             var persons = await _personRepository.GetAllAsync();
-            return _mapper.Map<IEnumerable<PersonDTO>>(persons);
+
+            var personsWithAge = persons
+                .OrderBy(p => p.FirstName)
+                .Select(p => new PersonResponseDTO
+                {
+                    Id = p.Id,
+                    FirstName = p.FirstName,
+                    Age = CalculateAge(p.Birthday)
+                });
+            return _mapper.Map<IEnumerable<PersonResponseDTO>>(personsWithAge);
         }
 
-        public async Task<PersonDTO> AddAsync(PersonDTO personDto)
+        public async Task<PersonResponseDTO> AddAsync(PersonRequestDTO personDto)
         {
+            int age = CalculateAge(personDto.Birthday);
+            if (age >= 150)
+            {
+                throw new InvalidAgeException("Invalid age. Age must be at least 150.");
+            }
+
             var person = _mapper.Map<Person>(personDto);
             person.Id = Guid.NewGuid();
             await _personRepository.AddAsync(person);
             await _unitOfWork.SaveChangesAsync();
-            return _mapper.Map<PersonDTO>(person);
+
+            var personResponseDto = _mapper.Map<PersonResponseDTO>(person);
+            personResponseDto.Age = age;
+
+            return personResponseDto;
         }
 
-        public async Task<PersonDTO> UpdateAsync(Guid id, PersonDTO personDto)
+
+        public static int CalculateAge(DateTime birthDate)
         {
-            var person = await _personRepository.GetByIdAsync(id);
-            if (person == null)
+            DateTime currentDate = DateTime.Today;
+            int age = currentDate.Year - birthDate.Year;
+            if (birthDate > currentDate.AddYears(-age))
             {
-                throw new ArgumentException($"Entity with id {id} not found.");
+                age--;
             }
-            personDto.Id = person.Id;
 
-            _mapper.Map(personDto, person);
-
-            await _personRepository.UpdateAsync(person);
-            await _unitOfWork.SaveChangesAsync();
-            return _mapper.Map<PersonDTO>(person);
-        }
-
-        public async Task<PersonDTO> DeleteAsync(Guid id)
-        {
-            var person = await _personRepository.GetByIdAsync(id);
-            await _personRepository.DeleteAsync(person);
-            await _unitOfWork.SaveChangesAsync();
-            return _mapper.Map<PersonDTO>(person);
+            return age;
         }
     }
 }

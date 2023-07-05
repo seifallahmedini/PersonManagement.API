@@ -1,5 +1,6 @@
 ﻿using PersonManagement.Domain.Entities;
 using AutoMapper;
+using PersonManagement.Application.DTOs;
 
 namespace PersonManagement.Application
 {
@@ -7,7 +8,8 @@ namespace PersonManagement.Application
     {
         public MappingProfile()
         {
-            CreateMap<Person, PersonDTO>().ReverseMap();
+            CreateMap<Person, PersonRequestDTO>().ReverseMap();
+            CreateMap<Person, PersonResponseDTO>().ReverseMap();
         }
     }
 }

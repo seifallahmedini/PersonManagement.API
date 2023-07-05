@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonManagement.Application
+namespace PersonManagement.Application.DTOs
 {
-    public class PersonDTO
+    public class PersonResponseDTO
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime Birthday { get; set; }
+        public int Age { get; set; }
     }
 }

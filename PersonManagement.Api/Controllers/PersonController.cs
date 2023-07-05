@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PersonManagement.Application;
+using PersonManagement.Application.Exceptions;
 
 namespace PersonManagement.Api.Controllers
 {
@@ -14,18 +15,6 @@ namespace PersonManagement.Api.Controllers
             _personService = personService;
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdAsync(Guid id)
-        {
-            var person = await _personService.GetByIdAsync(id);
-            if (person == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(person);
-        }
-
         [HttpGet]
         public async Task<IActionResult> GetAllAsync()
         {
@@ -34,31 +23,17 @@ namespace PersonManagement.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddAsync(PersonDTO personDto)
-        {
-            var person = await _personService.AddAsync(personDto);
-            return Ok(person);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAsync(Guid id, PersonDTO personDto)
+        public async Task<IActionResult> AddAsync(PersonRequestDTO personDto)
         {
             try
             {
-                var updatedPerson = await _personService.UpdateAsync(id, personDto);
-                return Ok(updatedPerson);
+                var person = await _personService.AddAsync(personDto);
+                return Ok(person);
             }
-            catch (ArgumentException ex)
+            catch (InvalidAgeException ex)
             {
                 return BadRequest(ex.Message);
             }
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(Guid id)
-        {
-            var person = await _personService.DeleteAsync(id);
-            return Ok(person);
         }
     }
 }
